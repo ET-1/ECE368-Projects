@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char ** argv)
+{
+  const char * filename = argv[1];
+
+  FILE * fptr = NULL;
+  fptr = fopen(filename, "r"); //Setting File Pointer                                                                                          
+
+  //Initializing Variables                                                                                                                     
+  int numVertices = 0;
+  int numEdges = 0;
+  int vertix = 0;
+  int connect = 0;
+  int countVertices = 0;
+  int countEdges = 0;
+
+  //Scans in and sets the number of vertices and number of edges                                                                               
+  fscanf(fptr, "%d %d\n", &numVertices, &numEdges);
+
+  //Seeks to the beginning of the edge declarations in map file                                                                                
+  //fseek(fptr, (12*numVertices), SEEK_CUR);                                                                                                   
+
+  int w,x,y;
+  for(countVertices; countVertices < numVertices; countVertices++)
+    {
+      fscanf(fptr, "%d %d %d\n", &w, &x,&y);
+    }
+
+  //Initializes 2d array to hold variables                                                                                                     
+  int map[numVertices][numVertices];
+
+  //Zeros out the 2d array                                                                                                                     
+  memset(map, 0, sizeof(map[0][0]) * numVertices * numVertices);
+
+  //Sets the vertix-to-vertix representation as 1                                                                                              
+  for(countEdges; countEdges<numEdges; countEdges++)
+    {
+      fscanf(fptr, "%d %d\n", &vertix, &connect);
+      map[vertix][connect] = 1;
+      map[connect][vertix] = 1;
+    }
+

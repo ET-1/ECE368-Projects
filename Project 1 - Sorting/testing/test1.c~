@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+void Save_Seq1(char * Filename, int N)
+{
+  FILE * fptr = fopen(Filename,"wb");
+  int a,h,j,p,gap,prins;
+  int i = 0;
+
+  gap = 1;
+
+  for(h = 0;h < p;h++){
+    i++;
+    gap = gap * 2;
+    j = gap;
+    prins = fprintf(fptr,"%d\n",gap);
+    for(a = 1;a < i + 1;a++){
+      j = (j * 3) / 2;
+      prins = fprintf(fptr,"%d\n",j);
+    }
+  }
+
+  fclose(fptr);
+}
+
+int main(int argc, char **argv)
+{
+  Save_Seq1("1000.txt", 4);
+  return 0;
+}
+
